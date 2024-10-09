@@ -29,12 +29,7 @@
             {
                 tomb[i] = rnd.Next(alsoHatar, felsoHatar);
             }
-            Console.Write("Sorban: ");
-            for (int i = 0; i < tomb.Length - 1; i++)
-            {
-                Console.Write(tomb[i] + ", ");
-            }
-            Console.WriteLine(tomb[tomb.Length - 1]);
+            Console.WriteLine("Sorban: " + string.Join(", ", tomb));
             Console.Write("Visszafele: ");
             for (int i = tomb.Length - 1; i > 0; i--)
             {
@@ -85,11 +80,11 @@
                 int felsoHatar = EgeszetBeker(VeletlenSzamHatartBekerUzenet(true));
                 return Enumerable.Range(0, 15).Select((int _) => rnd.Next(alsoHatar, felsoHatar)).ToArray();
             }))();
-            Console.WriteLine("Sorban: " + tomb.VesszovelKiirat());
-            Console.WriteLine("Visszafele: " + tomb.VesszovelKiirat(true));
+            Console.WriteLine("Sorban: " + tomb.ElvalasztovalOsszekot());
+            Console.WriteLine("Visszafele: " + tomb.ElvalasztovalOsszekot(forditva: true));
             Console.WriteLine("Összeg: " + tomb.Sum());
             Console.WriteLine("Átlag: " + tomb.Average());
-            Console.WriteLine("5-tel oszthatók: " + tomb.Where((int i) => i % 5 == 0).ToArray().VesszovelKiirat());
+            Console.WriteLine("5-tel oszthatók: " + tomb.Where((int i) => i % 5 == 0).ToArray().ElvalasztovalOsszekot());
             Console.WriteLine(((Func<string>)(() => {
                 int n = EgeszetBeker("Adj meg egy egész számot aminél a kisebbeket akarod megszámolni: ");
                 return $"Kisebb mint {n} darab: " + tomb.Count((int i) => i < n);
